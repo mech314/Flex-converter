@@ -7,10 +7,6 @@
   Output pin 11
 
 ********************************************************/
-
-
-
-
 #include <Adafruit_SSD1306.h>
 #include <splash.h>
 #include <SPI.h>
@@ -87,13 +83,8 @@ const unsigned char StartLogo [] PROGMEM = {
 	0xc0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xc0
 };
 
-
-
-
 int inpPin = 8;     //input pin 8
 int outPin = 11;    // PWM output
-
-
 volatile uint16_t revTick;    //Ticks per rev
 uint16_t pwm_output  = 0;     //storing PWM value
 int HZ;                       //storing HZ input
@@ -109,8 +100,7 @@ static long highTime = 0;     // Settings for temperature
 static long lowTime = 0;
 static long tempPulse;
 
-void setupTimer()   //  timer1
-{
+void setupTimer() {   //  timer1
   TCCR1A = 0;      // 
   TCCR1B = 132;    // (10000100) Falling edge trigger, Timer = CPU Clock/256, noise cancellation on
   TCCR1C = 0;      // 
@@ -118,14 +108,12 @@ void setupTimer()   //  timer1
   TCNT1 = 0;       // start from 0
 }
 
-ISR(TIMER1_CAPT_vect)    // Interupt when pulse is detected
-{
+ISR(TIMER1_CAPT_vect) {    // Interupt when pulse is detecte
   revTick = ICR1;      // save duration
   TCNT1 = 0;       // restart timer
 }
 
-ISR(TIMER1_OVF_vect)    // counter overflow/timeout
-{
+ISR(TIMER1_OVF_vect) {    // counter overflow/timeout
   revTick = 0;  // Ticks per second = 0
 }
 
