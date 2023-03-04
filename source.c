@@ -157,7 +157,7 @@ void loop() {
     HZ = 62200 / revTick; // 3456000ticks per minute, 57600 per second
   }
   else {
-    HZ = 0; //needs real sensor test to determine correct tickrate
+    HZ = 0;
   }
 
   //calculate ethanol percentage
